@@ -9,11 +9,11 @@ namespace Assets.Game.Scripts.Features.Spawner
     public class LevelConfig : ScriptableObject
     {
         [SerializeField] private List<IconConfig> _iconConfigs;
-        [SerializeField] private List<Color> _colorConfigs;
+        [SerializeField] private List<ColorConfig> _colorConfigs;
         [SerializeField] private List<ShapeConfig> _shapeConfigs;
 
         public List<IconConfig> IconConfigs { get => _iconConfigs; }
-        public List<Color> ColorConfigs { get => _colorConfigs; }
+        public List<ColorConfig> ColorConfigs { get => _colorConfigs; }
         public List<ShapeConfig> ShapeConfigs { get => _shapeConfigs; }
     }
 
@@ -22,6 +22,13 @@ namespace Assets.Game.Scripts.Features.Spawner
     {
         public Sprite Sprite;
         public IconType IconType;
+    }
+
+    [Serializable]
+    public class ColorConfig
+    {
+        public Color Color;
+        public ColorType ColorType;
     }
 
     [Serializable]

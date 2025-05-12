@@ -20,16 +20,16 @@ MonoBehaviour:
   - Sprite: {fileID: 0}
     IconType: 2
   _colorConfigs:
-  - Sprite: {fileID: 0}
+  - Color: {r: 1, g: 0, b: 0, a: 0}
     ColorType: 0
-  - Sprite: {fileID: 0}
-    ColorType: 1
-  - Sprite: {fileID: 0}
+  - Color: {r: 0, g: 0.097754, b: 1, a: 0}
     ColorType: 2
+  - Color: {r: 0, g: 0.90188676, b: 0.2312673, a: 0}
+    ColorType: 1
   _shapeConfigs:
-  - Sprite: {fileID: 0}
+  - Sprite: {fileID: 1192298231, guid: 3fabbe0b0b1e0bd45b4d5cd5156354f7, type: 3}
     ShapeType: 0
-  - Sprite: {fileID: 0}
+  - Sprite: {fileID: 1685796551, guid: 3fabbe0b0b1e0bd45b4d5cd5156354f7, type: 3}
     ShapeType: 1
-  - Sprite: {fileID: 0}
+  - Sprite: {fileID: 1335912756, guid: 3fabbe0b0b1e0bd45b4d5cd5156354f7, type: 3}
     ShapeType: 2
