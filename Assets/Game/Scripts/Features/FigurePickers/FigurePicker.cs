@@ -1,4 +1,5 @@
 ﻿using Assets.Game.Scripts.Core.Inputs;
+using Assets.Game.Scripts.Features.Spawner;
 using System;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Assets.Game.Scripts.Features.FigurePickers
     {
         private readonly IInput _input;
         private readonly Camera _camera;
+
+        public event Action<Figure> OnFigurePicked;
 
         public FigurePicker(IInput input, Camera camera)
         {
@@ -22,16 +25,14 @@ namespace Assets.Game.Scripts.Features.FigurePickers
 
         private void OnTouchedHandler(Vector2 touchPosition)
         {
-            Debug.Log(touchPosition);
-
             Vector3 worldPosition = _camera.ScreenToWorldPoint(touchPosition);
             worldPosition.z = 0;
 
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
 
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.TryGetComponent<Figure>(out var figure))
             {
-                Debug.Log("Clicked: " + hit.collider.gameObject.name);
+                OnFigurePicked?.Invoke(figure);
             }
         }
 
