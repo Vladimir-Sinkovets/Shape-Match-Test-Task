@@ -21,7 +21,7 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         public void Init()
         {
-            _figures = SpawnFigures().ToList();
+            _figures = CreateFigures().ToList();
         }
 
         [Inject]
@@ -30,30 +30,21 @@ namespace Assets.Game.Scripts.Features.Spawner
             _levelConfig = levelConfig;
         }
 
-        private IEnumerable<Figure> SpawnFigures()
+        private IEnumerable<Figure> CreateFigures()
         {
-            for (int i = 0; i < _levelConfig.NumberOfDuplicates; i++)
+            var count = _levelConfig.NumberOfDuplicates *
+                _levelConfig.ShapeConfigs.Count *
+                _levelConfig.ColorConfigs.Count *
+                _levelConfig.IconConfigs.Count;
+
+            for (int i = 0; i < count; i++)
             {
-                foreach (var shape in _levelConfig.ShapeConfigs)
-                {
-                    foreach (var icon in _levelConfig.IconConfigs)
-                    {
-                        foreach (var color in _levelConfig.ColorConfigs)
-                        {
-                            var figure = Instantiate(_figurePrefab, Vector3.zero, Quaternion.identity, _continer);
+                var figure = Instantiate(_figurePrefab, Vector3.zero, Quaternion.identity, _continer);
+                figure.gameObject.SetActive(false);
 
-                            figure.SetShape(shape.Type, shape.Sprite);
-                            figure.SetIcon(icon.Type, icon.Sprite);
-                            figure.SetColor(color.ColorType, color.Color);
+                figure.OnDestroyed += OnFigureDestroyedHandler;
 
-                            figure.gameObject.SetActive(false);
-
-                            figure.OnDestroyed += OnFigureDestroyedHandler;
-
-                            yield return figure;
-                        }
-                    }
-                }
+                yield return figure;
             }
         }
 
