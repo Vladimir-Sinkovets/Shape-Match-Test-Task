@@ -16,6 +16,10 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         public event Action<Figure> OnDestroyed;
 
+        public Sprite IconSprite { get => _icon.sprite; }
+        public Color Color { get => _coloredBackground.color; }
+        public Sprite BackgroundSprite { get => _background.sprite; }
+
         public ShapeType ShapeType { get => _shapeType; }
         public ColorType ColorType { get => _colorType; }
         public IconType IconType { get => _iconType; }

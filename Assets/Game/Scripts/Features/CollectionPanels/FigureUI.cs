@@ -9,13 +9,14 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
         [SerializeField] private Image _coloredBackground;
         [SerializeField] private Image _background;
 
-        public void ShowFigure(Sprite iconSprite, Sprite coloredBackgroundSprite, Sprite backgrroundSprite)
+        public void ShowFigure(Sprite iconSprite, Color color, Sprite backgrroundSprite)
         {
             _icon.gameObject.SetActive(true);
             _icon.sprite = iconSprite;
 
             _coloredBackground.gameObject.SetActive(true);
-            _coloredBackground.sprite = coloredBackgroundSprite;
+            _coloredBackground.sprite = backgrroundSprite;
+            _coloredBackground.color = color;
 
             _background.gameObject.SetActive(true);
             _background.sprite = backgrroundSprite;

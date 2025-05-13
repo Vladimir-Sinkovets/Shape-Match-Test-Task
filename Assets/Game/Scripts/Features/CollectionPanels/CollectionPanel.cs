@@ -11,15 +11,16 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
         [SerializeField] private RectTransform _panel;
         [SerializeField] private float _movingTime;
 
-        private List<RectTransform> _uiFigures;
+        private List<FigureUI> _uiFigures;
 
         public void Init()
         {
-            _uiFigures = new List<RectTransform>();
+            _uiFigures = new List<FigureUI>();
 
             foreach (RectTransform child in _panel)
             {
-                _uiFigures.Add(child);
+                if (child.TryGetComponent<FigureUI>(out var figureUI))
+                    _uiFigures.Add(figureUI);
             }
         }
 
@@ -27,7 +28,9 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
         {
             figure.DeletePhysics();
 
-            var destination = Camera.main.ScreenToWorldPoint(_uiFigures.First().position);
+            var uiFigure = _uiFigures.First();
+
+            var destination = Camera.main.ScreenToWorldPoint(uiFigure.transform.position);
 
             destination.z = figure.transform.position.z;
 
@@ -37,7 +40,7 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
                 {
                     Debug.Log("Done");
 
-                    // Set panel figure
+                    uiFigure.ShowFigure(figure.IconSprite, figure.Color, figure.BackgroundSprite);
 
                     Destroy(figure.gameObject);
                 });
