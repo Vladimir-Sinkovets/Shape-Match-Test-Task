@@ -1,4 +1,5 @@
 ﻿using Assets.Game.Scripts.Shared.Enums;
+using System;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.Features.Spawner
@@ -12,6 +13,8 @@ namespace Assets.Game.Scripts.Features.Spawner
         private ShapeType _shapeType;
         private ColorType _colorType;
         private IconType _iconType;
+
+        public event Action<Figure> OnDestroyed;
 
         public ShapeType ShapeType { get => _shapeType; }
         public ColorType ColorType { get => _colorType; }
@@ -37,6 +40,11 @@ namespace Assets.Game.Scripts.Features.Spawner
             _coloredBackground.color = color;
 
             _colorType = colorType;
+        }
+
+        private void OnDestroy()
+        {
+            OnDestroyed?.Invoke(this);
         }
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Assets.Game.Scripts.Features.Spawner
 {
-    public interface IFiguresSpawner
+    public interface IFiguresPool
     {
-        void Spawn(IEnumerable<Figure> figures);
+        IEnumerable<Figure> Figures { get; }
+        void Init();
     }
 }
