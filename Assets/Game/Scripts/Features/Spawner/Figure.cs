@@ -1,5 +1,7 @@
 ﻿using Assets.Game.Scripts.Shared.Enums;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.Features.Spawner
@@ -9,6 +11,9 @@ namespace Assets.Game.Scripts.Features.Spawner
         [SerializeField] private SpriteRenderer _icon;
         [SerializeField] private SpriteRenderer _coloredBackground;
         [SerializeField] private SpriteRenderer _background;
+
+        [SerializeField] private PolygonCollider2D _polygonCollider;
+        [SerializeField] private Rigidbody2D _rigidbody;
 
         private FigureData _data = new();
 
@@ -22,6 +27,8 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         public void SetShape(ShapeType shapeType, Sprite sprite)
         {
+            UpdateColliderShape(sprite);
+
             _background.sprite = sprite;
             _coloredBackground.sprite = sprite;
 
@@ -42,15 +49,31 @@ namespace Assets.Game.Scripts.Features.Spawner
             _data.ColorType = colorType;
         }
 
+        public void DeletePhysics()
+        {
+            Destroy(_polygonCollider);
+            Destroy(_rigidbody);
+        }
+
+        private void UpdateColliderShape(Sprite sprite)
+        {
+            _polygonCollider.pathCount = 0;
+
+            var shapeCount = sprite.GetPhysicsShapeCount();
+
+            for (int i = 0; i < shapeCount; i++)
+            {
+                var points = new List<Vector2>();
+
+                sprite.GetPhysicsShape(i, points);
+
+                _polygonCollider.SetPath(i, points);
+            }
+        }
+
         private void OnDestroy()
         {
             OnDestroyed?.Invoke(this);
-        }
-
-        public void DeletePhysics()
-        {
-            Destroy(GetComponent<CircleCollider2D>());
-            Destroy(GetComponent<Rigidbody2D>());
         }
     }
 }
