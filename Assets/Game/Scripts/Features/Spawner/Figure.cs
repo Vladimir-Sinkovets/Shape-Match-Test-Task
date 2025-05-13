@@ -46,5 +46,11 @@ namespace Assets.Game.Scripts.Features.Spawner
         {
             OnDestroyed?.Invoke(this);
         }
+
+        public void DeletePhysics()
+        {
+            Destroy(GetComponent<CircleCollider2D>());
+            Destroy(GetComponent<Rigidbody2D>());
+        }
     }
 }

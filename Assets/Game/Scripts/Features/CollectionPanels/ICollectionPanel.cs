@@ -1,6 +1,10 @@
-﻿namespace Assets.Game.Scripts.Features.CollectionPanels
+﻿using Assets.Game.Scripts.Features.Spawner;
+
+namespace Assets.Game.Scripts.Features.CollectionPanels
 {
-    internal interface ICollectionPanel
+    public interface ICollectionPanel
     {
+        void Init();
+        void Take(Figure figure);
     }
 }
