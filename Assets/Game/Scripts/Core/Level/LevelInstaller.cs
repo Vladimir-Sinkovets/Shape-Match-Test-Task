@@ -1,4 +1,4 @@
-﻿using Assets.Game.Scripts.Core.Inputs;
+﻿using Assets.Game.Scripts.Features.FigurePickers;
 using Assets.Game.Scripts.Features.Spawner;
 using UnityEngine;
 using Zenject;
@@ -10,6 +10,7 @@ namespace Assets.Game.Scripts.Core.Level
         [SerializeField] private LevelConfig _levelConfig;
         [SerializeField] private FiguresSpawner _figuresSpawner;
         [SerializeField] private FiguresPool _figuresPool;
+        [SerializeField] private Camera _camera;
 
         public override void InstallBindings()
         {
@@ -21,6 +22,11 @@ namespace Assets.Game.Scripts.Core.Level
 
             Container.BindInterfacesTo<Inputs.Input>()
                 .AsSingle();
+
+            Container.BindInterfacesTo<FigurePicker>()
+                .AsSingle();
+
+            Container.BindInstance(_camera);
         }
     }
 }

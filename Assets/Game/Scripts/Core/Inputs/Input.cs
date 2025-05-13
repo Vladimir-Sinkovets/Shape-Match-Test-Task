@@ -21,8 +21,6 @@ namespace Assets.Game.Scripts.Core.Inputs
 
         private void OnTouchStartedHandler(InputAction.CallbackContext context)
         {
-            Debug.Log($"touch {_inputActions.Game.TouchPosition.ReadValue<Vector2>()}");
-
             OnTouched?.Invoke(_inputActions.Game.TouchPosition.ReadValue<Vector2>());
         }
 
