@@ -1,4 +1,6 @@
-﻿using Assets.Game.Scripts.Features.Spawner;
+﻿using Assets.Game.Scripts.Core.Inputs;
+using Assets.Game.Scripts.Features.Spawner;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -8,12 +10,14 @@ namespace Assets.Game.Scripts.Core.Level
     {
         private IFiguresSpawner _figuresSpawner;
         private IFiguresPool _figuresPool;
+        private IInput _input;
 
         [Inject]
-        public void Inject(IFiguresSpawner figuresSpawner, IFiguresPool figuresPool)
+        public void Inject(IFiguresSpawner figuresSpawner, IFiguresPool figuresPool, IInput input)
         {
             _figuresSpawner = figuresSpawner;
             _figuresPool = figuresPool;
+            _input = input;
         }
 
         private void Start()

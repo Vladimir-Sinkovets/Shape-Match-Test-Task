@@ -1,4 +1,5 @@
-﻿using Assets.Game.Scripts.Features.Spawner;
+﻿using Assets.Game.Scripts.Core.Inputs;
+using Assets.Game.Scripts.Features.Spawner;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +18,9 @@ namespace Assets.Game.Scripts.Core.Level
             Container.Bind<IFiguresSpawner>().FromInstance(_figuresSpawner);
 
             Container.Bind<IFiguresPool>().FromInstance(_figuresPool);
+
+            Container.BindInterfacesTo<Inputs.Input>()
+                .AsSingle();
         }
     }
 }
