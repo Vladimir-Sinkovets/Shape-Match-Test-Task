@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: Level_config
   m_EditorClassIdentifier: 
   _iconConfigs:
-  - Sprite: {fileID: 0}
-    IconType: 0
-  - Sprite: {fileID: 0}
-    IconType: 1
-  - Sprite: {fileID: 0}
-    IconType: 2
+  - Sprite: {fileID: -713612176, guid: 40a8004e3b5b96a4096112bb9be2bed3, type: 3}
+    Type: 0
+  - Sprite: {fileID: 894453820, guid: 40a8004e3b5b96a4096112bb9be2bed3, type: 3}
+    Type: 1
+  - Sprite: {fileID: -249765723, guid: 40a8004e3b5b96a4096112bb9be2bed3, type: 3}
+    Type: 2
   _colorConfigs:
-  - Color: {r: 1, g: 0, b: 0, a: 0}
+  - Color: {r: 1, g: 0, b: 0, a: 1}
     ColorType: 0
-  - Color: {r: 0, g: 0.097754, b: 1, a: 0}
+  - Color: {r: 0, g: 0.097754, b: 1, a: 1}
     ColorType: 2
-  - Color: {r: 0, g: 0.90188676, b: 0.2312673, a: 0}
+  - Color: {r: 0, g: 0.90188676, b: 0.2312673, a: 1}
     ColorType: 1
   _shapeConfigs:
   - Sprite: {fileID: 1192298231, guid: 3fabbe0b0b1e0bd45b4d5cd5156354f7, type: 3}
-    ShapeType: 0
+    Type: 0
   - Sprite: {fileID: 1685796551, guid: 3fabbe0b0b1e0bd45b4d5cd5156354f7, type: 3}
-    ShapeType: 1
+    Type: 1
   - Sprite: {fileID: 1335912756, guid: 3fabbe0b0b1e0bd45b4d5cd5156354f7, type: 3}
-    ShapeType: 2
+    Type: 2
