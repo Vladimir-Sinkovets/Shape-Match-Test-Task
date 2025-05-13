@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Assets.Game.Scripts.Features.Spawner
 {
     public interface IFiguresPool
     {
         IEnumerable<Figure> Figures { get; }
+
+        event Action OnFiguresOut;
+
         void Init();
     }
 }

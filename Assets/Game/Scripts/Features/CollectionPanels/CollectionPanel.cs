@@ -45,19 +45,12 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
 
             _isBlocked = true;
 
-            if (_currentIndex >= _uiFigures.Length)
-            {
-                OnPanelOverloaded?.Invoke();
-
-                return;
-            }    
-
             var uiFigure = _uiFigures[_currentIndex];
             _data[_currentIndex] = figure.Data;
 
             _currentIndex++;
 
-            var destination = Camera.main.ScreenToWorldPoint(uiFigure.transform.position);
+            var destination = Camera.main.ScreenToWorldPoint(uiFigure.transform.position); // to do: fix
             destination.z = figure.transform.position.z;
 
             figure.DeletePhysics(); // to do: fix
@@ -81,6 +74,13 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
 
                             _currentIndex = index;
                         }
+                    }
+
+                    if (_currentIndex >= _uiFigures.Length)
+                    {
+                        OnPanelOverloaded?.Invoke();
+
+                        return;
                     }
                 });
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,8 @@ namespace Assets.Game.Scripts.Features.Spawner
         [SerializeField] private Figure _figurePrefab;
         [Space]
         [SerializeField] private Transform _continer;
+
+        public event Action OnFiguresOut;
 
         private LevelConfig _levelConfig;
         private List<Figure> _figures;
@@ -54,6 +57,14 @@ namespace Assets.Game.Scripts.Features.Spawner
             }
         }
 
-        private void OnFigureDestroyedHandler(Figure figure) => _figures.Remove(figure);
+        private void OnFigureDestroyedHandler(Figure figure)
+        {
+            _figures.Remove(figure);
+
+            if (!_figures.Any())
+            {
+                OnFiguresOut?.Invoke();
+            }
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Assets.Game.Scripts.Features.CollectionPanels;
+using Assets.Game.Scripts.Features.EndGamePanels;
 using Assets.Game.Scripts.Features.FigurePickers;
 using Assets.Game.Scripts.Features.Spawner;
+using Assets.Game.Scripts.Shared.Constants;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +15,8 @@ namespace Assets.Game.Scripts.Core.Level
         [SerializeField] private FiguresPool _figuresPool;
         [SerializeField] private Camera _camera;
         [SerializeField] private CollectionPanel _collectionPanel;
+        [SerializeField] private EndGamePanel _winPanel;
+        [SerializeField] private EndGamePanel _losePanel;
 
         public override void InstallBindings()
         {
@@ -31,6 +35,12 @@ namespace Assets.Game.Scripts.Core.Level
             Container.BindInstance(_camera);
 
             Container.Bind<ICollectionPanel>().FromInstance(_collectionPanel);
+
+            Container.BindInstance(_winPanel)
+                .WithId(DependencyInjectionIds.WinPanelId);
+
+            Container.BindInstance(_losePanel)
+                .WithId(DependencyInjectionIds.LosePanelId);
         }
     }
 }

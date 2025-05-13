@@ -1,8 +1,8 @@
-﻿using Assets.Game.Scripts.Core.Inputs;
-using Assets.Game.Scripts.Features.CollectionPanels;
+﻿using Assets.Game.Scripts.Features.CollectionPanels;
+using Assets.Game.Scripts.Features.EndGamePanels;
 using Assets.Game.Scripts.Features.FigurePickers;
 using Assets.Game.Scripts.Features.Spawner;
-using TMPro;
+using Assets.Game.Scripts.Shared.Constants;
 using UnityEngine;
 using Zenject;
 
@@ -10,22 +10,12 @@ namespace Assets.Game.Scripts.Core.Level
 {
     public class LevelMain : MonoBehaviour
     {
-        private IFiguresSpawner _figuresSpawner;
-        private IFiguresPool _figuresPool;
-        private IFigurePicker _figurePicker;
-        private ICollectionPanel _collectionPanel;
-
-        [Inject]
-        public void Inject(IFiguresSpawner figuresSpawner,
-            IFiguresPool figuresPool,
-            IFigurePicker figurePicker,
-            ICollectionPanel collectionPanel)
-        {
-            _figuresSpawner = figuresSpawner;
-            _figuresPool = figuresPool;
-            _figurePicker = figurePicker;
-            _collectionPanel = collectionPanel;
-        }
+        [Inject] private IFiguresSpawner _figuresSpawner;
+        [Inject] private IFiguresPool _figuresPool;
+        [Inject] private IFigurePicker _figurePicker;
+        [Inject] private ICollectionPanel _collectionPanel;
+        [Inject(Id = DependencyInjectionIds.WinPanelId)] private EndGamePanel _winPanel;
+        [Inject(Id = DependencyInjectionIds.LosePanelId)] private EndGamePanel _losePanel;
 
         private void Start()
         {
@@ -38,11 +28,22 @@ namespace Assets.Game.Scripts.Core.Level
             _figuresSpawner.Spawn(_figuresPool.Figures);
 
             _figurePicker.OnFigurePicked += _collectionPanel.Take;
+
+            _collectionPanel.OnPanelOverloaded += Lose;
+
+            _figuresPool.OnFiguresOut += Win;
         }
+
+        private void Lose() => _losePanel.Show();
+        private void Win() => _winPanel.Show();
 
         private void OnEnable()
         {
             _figurePicker.OnFigurePicked -= _collectionPanel.Take;
+
+            _collectionPanel.OnPanelOverloaded -= Lose;
+
+            _figuresPool.OnFiguresOut -= Win;
         }
     }
 }
