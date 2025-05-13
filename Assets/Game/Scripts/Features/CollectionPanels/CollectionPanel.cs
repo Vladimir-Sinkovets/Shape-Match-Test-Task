@@ -40,7 +40,7 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
 
         public void Take(Figure figure) // to do: split method
         {
-            if (_isBlocked)
+            if (_isBlocked || _currentIndex >= _uiFigures.Length)
                 return;
 
             _isBlocked = true;
