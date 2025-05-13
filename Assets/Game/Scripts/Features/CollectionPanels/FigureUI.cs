@@ -24,10 +24,9 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
 
         public void HideFigure()
         {
-            _icon.gameObject.SetActive(true);
-            _background.gameObject.SetActive(true);
-            _coloredBackground.gameObject.SetActive(true);
-
+            _icon.gameObject.SetActive(false);
+            _background.gameObject.SetActive(false);
+            _coloredBackground.gameObject.SetActive(false);
         }
     }
 }

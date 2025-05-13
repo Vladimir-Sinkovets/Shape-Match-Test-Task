@@ -10,9 +10,7 @@ namespace Assets.Game.Scripts.Features.Spawner
         [SerializeField] private SpriteRenderer _coloredBackground;
         [SerializeField] private SpriteRenderer _background;
 
-        private ShapeType _shapeType;
-        private ColorType _colorType;
-        private IconType _iconType;
+        private FigureData _data = new();
 
         public event Action<Figure> OnDestroyed;
 
@@ -20,30 +18,28 @@ namespace Assets.Game.Scripts.Features.Spawner
         public Color Color { get => _coloredBackground.color; }
         public Sprite BackgroundSprite { get => _background.sprite; }
 
-        public ShapeType ShapeType { get => _shapeType; }
-        public ColorType ColorType { get => _colorType; }
-        public IconType IconType { get => _iconType; }
+        public FigureData Data { get => _data; }
 
         public void SetShape(ShapeType shapeType, Sprite sprite)
         {
             _background.sprite = sprite;
             _coloredBackground.sprite = sprite;
 
-            _shapeType = shapeType;
+            _data.ShapeType = shapeType;
         }
 
         public void SetIcon(IconType iconType, Sprite sprite)
         {
             _icon.sprite = sprite;
 
-            _iconType = iconType;
+            _data.IconType = iconType;
         }
 
         public void SetColor(ColorType colorType, Color color)
         {
             _coloredBackground.color = color;
 
-            _colorType = colorType;
+            _data.ColorType = colorType;
         }
 
         private void OnDestroy()
