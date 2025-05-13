@@ -17,6 +17,7 @@ namespace Assets.Game.Scripts.Core.Level
         [SerializeField] private CollectionPanel _collectionPanel;
         [SerializeField] private EndGamePanel _winPanel;
         [SerializeField] private EndGamePanel _losePanel;
+        [SerializeField] private RefreshButtonEvents _refreshButtonEvents;
 
         public override void InstallBindings()
         {
@@ -41,6 +42,8 @@ namespace Assets.Game.Scripts.Core.Level
 
             Container.BindInstance(_losePanel)
                 .WithId(DependencyInjectionIds.LosePanelId);
+
+            Container.Bind<IRefreshButtonEvents>().FromInstance(_refreshButtonEvents);
         }
     }
 }

@@ -31,13 +31,21 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         private IEnumerator SpawnFiguresCoroutine(IEnumerable<Figure> figures)
         {
-            var combinations = GenerateCombinations().ToArray();
+            DisableFigures(figures);
+
+            var combinations = GenerateCombinations().Shuffle().ToArray();
 
             SetUpFigures(figures, combinations);
 
-            figures = figures.Shuffle();
-
             yield return SpawnFigures(figures);
+        }
+
+        private static void DisableFigures(IEnumerable<Figure> figures)
+        {
+            foreach (var figure in figures)
+            {
+                figure.gameObject.SetActive(false);
+            }
         }
 
         private IEnumerator SpawnFigures(IEnumerable<Figure> figures)
@@ -54,7 +62,9 @@ namespace Assets.Game.Scripts.Features.Spawner
             }
         }
 
-        private static void SetUpFigures(IEnumerable<Figure> figures, (SpriteConfig<ShapeType> Shape, SpriteConfig<IconType> Icon, ColorConfig Color)[] combinations)
+        private static void SetUpFigures(
+            IEnumerable<Figure> figures,
+            (SpriteConfig<ShapeType> Shape, SpriteConfig<IconType> Icon, ColorConfig Color)[] combinations)
         {
             var i = 0;
             foreach (var figure in figures)
