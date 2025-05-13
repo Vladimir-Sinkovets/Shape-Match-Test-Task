@@ -38,7 +38,7 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
             _data = new FigureData[uiFigures.Count];
         }
 
-        public void Take(Figure figure)
+        public void Take(Figure figure) // to do: split method
         {
             if (_isBlocked)
                 return;
@@ -60,7 +60,7 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
             var destination = Camera.main.ScreenToWorldPoint(uiFigure.transform.position);
             destination.z = figure.transform.position.z;
 
-            figure.DeletePhysics();
+            figure.DeletePhysics(); // to do: fix
 
             figure.transform.DOMove(destination, _movingTime)
                 .SetEase(Ease.OutCubic)
