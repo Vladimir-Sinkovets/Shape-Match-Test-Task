@@ -564,6 +564,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1131478088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1131478090}
+  - component: {fileID: 1131478089}
+  m_Layer: 0
+  m_Name: Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1131478089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131478088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e647e05c611aa41bdd289a9c573612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _figurePrefab: {fileID: 877044387508933221, guid: 4c98e0fcc30628a49bc5921c16e41ebe, type: 3}
+  _continer: {fileID: 1131478090}
+--- !u!4 &1131478090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131478088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08251333, y: 0.5775832, z: 0.042166553}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350562322
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,11 +951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb540282b8b28e40914959ea9333f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _figurePrefab: {fileID: 877044387508933221, guid: 4c98e0fcc30628a49bc5921c16e41ebe, type: 3}
-  _continer: {fileID: 1541341473}
+  _timeBetweenSpawns: 0.3
   _spawnPointFrom: {fileID: 723332195}
   _spawnPointTo: {fileID: 1627349474}
-  _timeBetweenSpawns: 0.3
 --- !u!4 &1541341473
 Transform:
   m_ObjectHideFlags: 0
@@ -1092,6 +1136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelConfig: {fileID: 11400000, guid: dadde2f4b5bed2f4796504946a731110, type: 2}
   _figuresSpawner: {fileID: 1541341472}
+  _figuresPool: {fileID: 1131478089}
 --- !u!114 &1858774848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,9 +1236,10 @@ SceneRoots:
   - {fileID: 122783335}
   - {fileID: 1858774849}
   - {fileID: 1541341473}
+  - {fileID: 1131478090}
   - {fileID: 1977989220}
+  - {fileID: 1622545205}
   - {fileID: 833288300}
+  - {fileID: 1508786709}
   - {fileID: 844065874}
   - {fileID: 1853567930}
-  - {fileID: 1508786709}
-  - {fileID: 1622545205}

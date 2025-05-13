@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf931e555987294592e366e57b1bb1e, type: 3}
   m_Name: Level_config
   m_EditorClassIdentifier: 
+  _numberOfDuplicates: 1
   _iconConfigs:
   - Sprite: {fileID: -713612176, guid: 40a8004e3b5b96a4096112bb9be2bed3, type: 3}
     Type: 0
