@@ -2,7 +2,6 @@
 using Assets.Game.Scripts.Shared.Extensions;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -15,6 +14,8 @@ namespace Assets.Game.Scripts.Features.Spawner
         [Space]
         [SerializeField] private Transform _spawnPointFrom;
         [SerializeField] private Transform _spawnPointTo;
+
+        private Vector2 _lastSpawnPosition;
 
         private LevelConfig _levelConfig;
 
@@ -50,16 +51,43 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         private IEnumerator SpawnFigures(IEnumerable<Figure> figures)
         {
+            _lastSpawnPosition = _spawnPointFrom.position;
+
             foreach (var figure in figures)
             {
-                figure.transform.position = new Vector2(
-                    Random.Range(_spawnPointFrom.position.x, _spawnPointTo.position.x),
-                    Random.Range(_spawnPointFrom.position.y, _spawnPointTo.position.y));
+                figure.transform.position = GetNextRandomPosition();
 
                 figure.gameObject.SetActive(true);
 
                 yield return new WaitForSeconds(_timeBetweenSpawns);
             }
+        }
+
+        private Vector2 GetNextRandomPosition()
+        {
+            var randomPosition = new Vector2(
+                Random.Range(_spawnPointFrom.position.x, _spawnPointTo.position.x),
+                Random.Range(_spawnPointFrom.position.y, _spawnPointTo.position.y));
+
+            if (Vector2.Distance(randomPosition, _lastSpawnPosition) <= 0.5f)
+            {
+                var minX = _spawnPointFrom.position.x;
+                var maxX = _spawnPointTo.position.x;
+                var minY = _spawnPointFrom.position.y;
+                var maxY = _spawnPointTo.position.y;
+
+                var xOffsetDirection = (maxX - _lastSpawnPosition.x) > (_lastSpawnPosition.x - minX) ? 1 : -1;
+                var newX = Mathf.Clamp(_lastSpawnPosition.x + xOffsetDirection * 0.5f, minX, maxX);
+
+                var yOffsetDirection = (maxY - _lastSpawnPosition.y) > (_lastSpawnPosition.y - minY) ? 1 : -1;
+                var newY = Mathf.Clamp(_lastSpawnPosition.y + yOffsetDirection * 0.5f, minY, maxY);
+
+                randomPosition = new Vector2(newX, newY);
+            }
+
+            _lastSpawnPosition = randomPosition;
+
+            return randomPosition;
         }
 
         private static void SetUpFigures(
