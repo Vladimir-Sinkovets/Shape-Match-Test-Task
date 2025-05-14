@@ -1,4 +1,4 @@
-﻿using Assets.Game.Scripts.Features.Spawner;
+﻿using Assets.Game.Scripts.Features.Figures;
 using Assets.Game.Scripts.Shared.Enums;
 using DG.Tweening;
 using System;

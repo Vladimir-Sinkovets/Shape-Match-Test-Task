@@ -1,4 +1,5 @@
-﻿using Assets.Game.Scripts.Shared.Enums;
+﻿using Assets.Game.Scripts.Features.Figures;
+using Assets.Game.Scripts.Shared.Enums;
 using Assets.Game.Scripts.Shared.Extensions;
 using System.Collections;
 using System.Collections.Generic;

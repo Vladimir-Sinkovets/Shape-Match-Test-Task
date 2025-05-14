@@ -2,6 +2,7 @@
 using Assets.Game.Scripts.Features.EndGamePanels;
 using Assets.Game.Scripts.Features.FigurePickers;
 using Assets.Game.Scripts.Features.Spawner;
+using Assets.Game.Scripts.Features.UI;
 using Assets.Game.Scripts.Shared.Constants;
 using UnityEngine;
 using Zenject;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Game.Scripts.Features.Spawner
+namespace Assets.Game.Scripts.Features.UI
 {
     public interface IRefreshButtonEvents
     {

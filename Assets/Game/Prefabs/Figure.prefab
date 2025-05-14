@@ -241,13 +241,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2321448817280824061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65bc0d04354d1646adffc11233ad70b, type: 3}
+  m_Script: {fileID: 11500000, guid: b61386a4f3a250a4ebd4aba4a0cd41d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 2134024375791582933}
   _coloredBackground: {fileID: 1307202770733355104}
   _background: {fileID: 4684788054669371489}
   _polygonCollider: {fileID: 7553041606515666748}
+  _rigidbody: {fileID: 2922486026361674599}
 --- !u!60 &7553041606515666748
 PolygonCollider2D:
   m_ObjectHideFlags: 0

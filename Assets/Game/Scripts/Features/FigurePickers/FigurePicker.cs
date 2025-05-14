@@ -1,5 +1,5 @@
 ﻿using Assets.Game.Scripts.Core.Inputs;
-using Assets.Game.Scripts.Features.Spawner;
+using Assets.Game.Scripts.Features.Figures;
 using System;
 using UnityEngine;
 

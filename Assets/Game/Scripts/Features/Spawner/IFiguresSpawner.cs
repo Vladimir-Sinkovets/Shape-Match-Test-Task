@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Game.Scripts.Features.Figures;
+using System.Collections.Generic;
 
 namespace Assets.Game.Scripts.Features.Spawner
 {

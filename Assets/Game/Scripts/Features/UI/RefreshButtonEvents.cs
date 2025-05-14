@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Game.Scripts.Features.Spawner
+namespace Assets.Game.Scripts.Features.UI
 {
     public class RefreshButtonEvents : MonoBehaviour, IRefreshButtonEvents
     {

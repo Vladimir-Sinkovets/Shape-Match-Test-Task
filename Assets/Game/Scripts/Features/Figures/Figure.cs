@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Game.Scripts.Features.Spawner
+namespace Assets.Game.Scripts.Features.Figures
 {
     public class Figure : MonoBehaviour
     {

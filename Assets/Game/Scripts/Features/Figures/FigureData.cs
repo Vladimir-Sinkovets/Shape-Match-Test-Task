@@ -1,6 +1,6 @@
 ﻿using Assets.Game.Scripts.Shared.Enums;
 
-namespace Assets.Game.Scripts.Features.Spawner
+namespace Assets.Game.Scripts.Features.Figures
 {
     public class FigureData
     {
