@@ -20,6 +20,7 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         private LevelConfig _levelConfig;
         private IEffectFactory _effectFactory;
+        private Coroutine _spawnCoroutine;
 
         [Inject]
         public void Inject(LevelConfig levelConfig, IEffectFactory effectFactory)
@@ -30,12 +31,15 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         public void Spawn(IEnumerable<Figure> figures)
         {
-            StartCoroutine(SpawnFiguresCoroutine(figures));
+            if (_spawnCoroutine != null)
+                StopCoroutine(_spawnCoroutine);
+
+            _spawnCoroutine = StartCoroutine(SpawnFiguresCoroutine(figures));
         }
 
         private IEnumerator SpawnFiguresCoroutine(IEnumerable<Figure> figures)
         {
-            DisableFigures(figures);
+            CleanFigures(figures);
 
             var combinations = GenerateCombinations().Shuffle().ToArray();
 
@@ -44,11 +48,13 @@ namespace Assets.Game.Scripts.Features.Spawner
             yield return SpawnFigures(figures);
         }
 
-        private static void DisableFigures(IEnumerable<Figure> figures)
+        private static void CleanFigures(IEnumerable<Figure> figures)
         {
             foreach (var figure in figures)
             {
                 figure.gameObject.SetActive(false);
+
+                figure.Effect?.Clear();
             }
         }
 

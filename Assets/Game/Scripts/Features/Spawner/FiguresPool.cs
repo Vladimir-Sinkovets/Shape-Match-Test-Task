@@ -18,8 +18,11 @@ namespace Assets.Game.Scripts.Features.Spawner
 
         private LevelConfig _levelConfig;
         private List<Figure> _figures;
+        private int _deletedFigures;
 
         public IEnumerable<Figure> Figures { get => _figures; }
+
+        public int DeletedFigures => _deletedFigures;
 
         public void Init()
         {
@@ -53,6 +56,8 @@ namespace Assets.Game.Scripts.Features.Spawner
         private void OnFigureDestroyedHandler(Figure figure)
         {
             _figures.Remove(figure);
+
+            _deletedFigures++;
 
             OnFigureDestroyed?.Invoke();
 

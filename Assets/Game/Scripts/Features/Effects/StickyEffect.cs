@@ -32,5 +32,14 @@ namespace Assets.Game.Scripts.Features.Effects
 
             GameObject.Destroy(_joint);
         }
+
+        public override void Clear()
+        {
+            base.Clear();
+
+            DeletePhysics();
+
+            _connectedFigure = null;
+        }
     }
 }

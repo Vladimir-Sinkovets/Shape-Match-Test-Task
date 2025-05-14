@@ -1,5 +1,7 @@
 ﻿using Assets.Game.Scripts.Features.Figures;
 using Assets.Game.Scripts.Features.Spawner;
+using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.Features.Effects
@@ -10,7 +12,6 @@ namespace Assets.Game.Scripts.Features.Effects
         private readonly FrozenEffectConfig _effectConfig;
         private bool _isFrozen;
 
-        private int _quantityForUnfreeze;
         private SpriteRenderer _ice;
 
         public override bool CanBePicked => !_isFrozen;
@@ -28,9 +29,18 @@ namespace Assets.Game.Scripts.Features.Effects
 
             _figuresPool.OnFigureDestroyed += OnFigureDestroyedHandler;
 
-            _quantityForUnfreeze = _effectConfig.QuantityForUnfreeze;
 
-            _ice = GameObject.Instantiate(_effectConfig.IceSprite, figure.transform);
+            if (_effectConfig.QuantityForUnfreeze <= _figuresPool.DeletedFigures)
+                Unfreeze();
+            else
+                _ice = GameObject.Instantiate(_effectConfig.IceSprite, figure.transform);
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+
+            Unfreeze();
         }
 
         private void OnFigureDestroyedHandler()
@@ -38,9 +48,7 @@ namespace Assets.Game.Scripts.Features.Effects
             if (!_isFrozen)
                 return;
 
-            _quantityForUnfreeze--;
-
-            if (_quantityForUnfreeze <= 0)
+            if (_effectConfig.QuantityForUnfreeze <= _figuresPool.DeletedFigures)
                 Unfreeze();
         }
 
@@ -48,7 +56,8 @@ namespace Assets.Game.Scripts.Features.Effects
         {
             _figuresPool.OnFigureDestroyed -= OnFigureDestroyedHandler;
 
-            GameObject.Destroy(_ice.gameObject);
+            if (_ice != null && !_ice.IsDestroyed())
+                GameObject.Destroy(_ice.gameObject);
 
             _isFrozen = false;
         }
