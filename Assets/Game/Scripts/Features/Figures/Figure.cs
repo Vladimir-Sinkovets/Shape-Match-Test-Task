@@ -25,7 +25,7 @@ namespace Assets.Game.Scripts.Features.Figures
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.collider.TryGetComponent<Figure>(out var collisionFigure))
-                _effect.HandleCollision(this, collisionFigure);
+                _effect.HandleCollision(collisionFigure);
         }
 
         public Sprite IconSprite { get => _icon.sprite; }
@@ -34,6 +34,7 @@ namespace Assets.Game.Scripts.Features.Figures
         public Rigidbody2D Rigidbody { get => _rigidbody; }
 
         public FigureData Data { get => _data; }
+        public bool CanBePicked { get => _effect.CanBePicked; }
 
         public void SetShape(ShapeType shapeType, Sprite sprite)
         {

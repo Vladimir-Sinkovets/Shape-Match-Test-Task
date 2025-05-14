@@ -14,6 +14,7 @@ namespace Assets.Game.Scripts.Features.Spawner
         [SerializeField] private Transform _continer;
 
         public event Action OnFiguresOut;
+        public event Action OnFigureDestroyed;
 
         private LevelConfig _levelConfig;
         private List<Figure> _figures;
@@ -52,6 +53,8 @@ namespace Assets.Game.Scripts.Features.Spawner
         private void OnFigureDestroyedHandler(Figure figure)
         {
             _figures.Remove(figure);
+
+            OnFigureDestroyed?.Invoke();
 
             if (!_figures.Any())
             {

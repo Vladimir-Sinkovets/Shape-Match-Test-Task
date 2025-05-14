@@ -9,6 +9,7 @@ namespace Assets.Game.Scripts.Features.Spawner
         IEnumerable<Figure> Figures { get; }
 
         event Action OnFiguresOut;
+        event Action OnFigureDestroyed;
 
         void Init();
     }

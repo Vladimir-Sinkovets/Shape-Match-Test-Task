@@ -1,3 +1,4 @@
+using Assets.Game.Scripts.Features.Effects;
 using Assets.Game.Scripts.Shared.Enums;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,20 @@ namespace Assets.Game.Scripts.Features.Spawner
         [SerializeField] private List<IconConfig> _iconConfigs;
         [SerializeField] private List<ColorConfig> _colorConfigs;
         [SerializeField] private List<ShapeConfig> _shapeConfigs;
+        [SerializeField] private FrozenEffectConfig _frozenEffectConfig;
 
         public List<IconConfig> IconConfigs { get => _iconConfigs; }
         public List<ColorConfig> ColorConfigs { get => _colorConfigs; }
         public List<ShapeConfig> ShapeConfigs { get => _shapeConfigs; }
         public int NumberOfDuplicates { get => _numberOfDuplicates; }
+        public FrozenEffectConfig FrozenEffectConfig { get => _frozenEffectConfig; }
+    }
+
+    [Serializable]
+    public class FrozenEffectConfig
+    {
+        public int QuantityForUnfreeze;
+        public SpriteRenderer IceSprite; 
     }
 
     [Serializable]

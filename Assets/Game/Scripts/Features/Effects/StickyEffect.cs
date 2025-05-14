@@ -30,5 +30,6 @@ namespace Assets.Game.Scripts.Features.Effects
         {
             GameObject.Destroy(_joint);
         }
+        public bool CanBePicked => true;
     }
 }

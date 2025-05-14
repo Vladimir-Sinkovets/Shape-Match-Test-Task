@@ -32,6 +32,9 @@ namespace Assets.Game.Scripts.Features.FigurePickers
 
             if (hit.collider != null && hit.collider.TryGetComponent<Figure>(out var figure))
             {
+                if (!figure.CanBePicked)
+                    return;
+
                 OnFigurePicked?.Invoke(figure);
             }
         }
