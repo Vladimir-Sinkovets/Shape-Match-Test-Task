@@ -38,8 +38,6 @@ namespace Assets.Game.Scripts.Features.Effects
             if (!_isFrozen)
                 return;
 
-            _figuresPool.OnFigureDestroyed -= OnFigureDestroyedHandler;
-
             _quantityForUnfreeze--;
 
             if (_quantityForUnfreeze <= 0)
@@ -48,6 +46,8 @@ namespace Assets.Game.Scripts.Features.Effects
 
         private void Unfreeze()
         {
+            _figuresPool.OnFigureDestroyed -= OnFigureDestroyedHandler;
+
             GameObject.Destroy(_ice.gameObject);
 
             _isFrozen = false;

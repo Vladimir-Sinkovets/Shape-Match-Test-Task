@@ -56,7 +56,9 @@ namespace Assets.Game.Scripts.Features.Spawner
         {
             _lastSpawnPosition = _spawnPointFrom.position;
 
-            foreach (var figure in figures)
+            var figuresArray = figures.ToArray();
+
+            foreach (var figure in figuresArray)
             {
                 figure.transform.position = GetNextRandomPosition();
 
