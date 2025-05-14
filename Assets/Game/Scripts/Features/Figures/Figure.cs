@@ -1,4 +1,5 @@
-﻿using Assets.Game.Scripts.Shared.Enums;
+﻿using Assets.Game.Scripts.Features.Effects;
+using Assets.Game.Scripts.Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,14 @@ namespace Assets.Game.Scripts.Features.Figures
 
         private FigureData _data = new();
 
+        private IFigureEffect _effect;
+
         public event Action<Figure> OnDestroyed;
 
         public Sprite IconSprite { get => _icon.sprite; }
         public Color Color { get => _coloredBackground.color; }
         public Sprite BackgroundSprite { get => _background.sprite; }
+        public Rigidbody2D Rigidbody { get => _rigidbody; }
 
         public FigureData Data { get => _data; }
 
@@ -47,6 +51,13 @@ namespace Assets.Game.Scripts.Features.Figures
             _coloredBackground.color = color;
 
             _data.ColorType = colorType;
+        }
+
+        public void SetEffect(IFigureEffect effect)
+        {
+            _effect = effect;
+
+            _effect.Start(this);
         }
 
         public void DeletePhysics()

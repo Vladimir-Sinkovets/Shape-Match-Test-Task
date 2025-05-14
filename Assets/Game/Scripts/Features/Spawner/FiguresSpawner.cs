@@ -1,5 +1,5 @@
-﻿using Assets.Game.Scripts.Features.Figures;
-using Assets.Game.Scripts.Shared.Enums;
+﻿using Assets.Game.Scripts.Features.Effects;
+using Assets.Game.Scripts.Features.Figures;
 using Assets.Game.Scripts.Shared.Extensions;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,11 +19,13 @@ namespace Assets.Game.Scripts.Features.Spawner
         private Vector2 _lastSpawnPosition;
 
         private LevelConfig _levelConfig;
+        private IEffectFactory _effectFactory;
 
         [Inject]
-        public void Inject(LevelConfig levelConfig)
+        public void Inject(LevelConfig levelConfig, IEffectFactory effectFactory)
         {
             _levelConfig = levelConfig;
+            _effectFactory = effectFactory;
         }
 
         public void Spawn(IEnumerable<Figure> figures)
@@ -91,9 +93,9 @@ namespace Assets.Game.Scripts.Features.Spawner
             return randomPosition;
         }
 
-        private static void SetUpFigures(
+        private void SetUpFigures(
             IEnumerable<Figure> figures,
-            (SpriteConfig<ShapeType> Shape, SpriteConfig<IconType> Icon, ColorConfig Color)[] combinations)
+            (ShapeConfig Shape, IconConfig Icon, ColorConfig Color)[] combinations)
         {
             var i = 0;
             foreach (var figure in figures)
@@ -105,10 +107,13 @@ namespace Assets.Game.Scripts.Features.Spawner
                 figure.SetIcon(combination.Icon.Type, combination.Icon.Sprite);
                 figure.SetColor(combination.Color.ColorType, combination.Color.Color);
 
+                var effect = _effectFactory.Get(combination.Icon.Effect);
+
+                figure.SetEffect(effect);
             }
         }
 
-        private IEnumerable<(SpriteConfig<ShapeType> Shape, SpriteConfig<IconType> Icon, ColorConfig Color)> GenerateCombinations()
+        private IEnumerable<(ShapeConfig Shape, IconConfig Icon, ColorConfig Color)> GenerateCombinations()
         {
             foreach (var shape in _levelConfig.ShapeConfigs)
                 foreach (var icon in _levelConfig.IconConfigs)

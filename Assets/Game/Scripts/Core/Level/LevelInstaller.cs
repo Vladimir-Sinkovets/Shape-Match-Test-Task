@@ -1,4 +1,5 @@
 ﻿using Assets.Game.Scripts.Features.CollectionPanels;
+using Assets.Game.Scripts.Features.Effects;
 using Assets.Game.Scripts.Features.EndGamePanels;
 using Assets.Game.Scripts.Features.FigurePickers;
 using Assets.Game.Scripts.Features.Spawner;
@@ -45,6 +46,9 @@ namespace Assets.Game.Scripts.Core.Level
                 .WithId(DependencyInjectionIds.LosePanelId);
 
             Container.Bind<IRefreshButtonEvents>().FromInstance(_refreshButtonEvents);
+
+            Container.Bind<IEffectFactory>().To<EffectFactory>()
+                .AsTransient();
         }
     }
 }

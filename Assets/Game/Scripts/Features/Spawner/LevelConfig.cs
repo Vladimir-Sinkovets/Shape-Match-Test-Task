@@ -9,21 +9,29 @@ namespace Assets.Game.Scripts.Features.Spawner
     public class LevelConfig : ScriptableObject
     {
         [SerializeField] private int _numberOfDuplicates;
-        [SerializeField] private List<SpriteConfig<IconType>> _iconConfigs;
+        [SerializeField] private List<IconConfig> _iconConfigs;
         [SerializeField] private List<ColorConfig> _colorConfigs;
-        [SerializeField] private List<SpriteConfig<ShapeType>> _shapeConfigs;
+        [SerializeField] private List<ShapeConfig> _shapeConfigs;
 
-        public List<SpriteConfig<IconType>> IconConfigs { get => _iconConfigs; }
+        public List<IconConfig> IconConfigs { get => _iconConfigs; }
         public List<ColorConfig> ColorConfigs { get => _colorConfigs; }
-        public List<SpriteConfig<ShapeType>> ShapeConfigs { get => _shapeConfigs; }
+        public List<ShapeConfig> ShapeConfigs { get => _shapeConfigs; }
         public int NumberOfDuplicates { get => _numberOfDuplicates; }
     }
 
     [Serializable]
-    public class SpriteConfig<T> where T : Enum
+    public class IconConfig
     {
         public Sprite Sprite;
-        public T Type;
+        public IconType Type;
+        public EffectType Effect;
+    }
+
+    [Serializable]
+    public class ShapeConfig
+    {
+        public Sprite Sprite;
+        public ShapeType Type;
     }
 
     [Serializable]
