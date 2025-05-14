@@ -6,7 +6,7 @@ namespace Assets.Game.Scripts.Features.Effects
     public class EmptyEffect : IFigureEffect
     {
         public void DeletePhysics() { }
-        public void OnCollisionEnter(Figure figure, Figure collider) { }
-        public void Start(Figure figure) { }
+        public void HandleCollision(Figure collider) { }
+        public void Init(Figure figure) { }
     }
 }

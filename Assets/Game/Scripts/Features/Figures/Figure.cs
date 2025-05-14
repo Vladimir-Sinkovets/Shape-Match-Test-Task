@@ -25,7 +25,7 @@ namespace Assets.Game.Scripts.Features.Figures
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.collider.TryGetComponent<Figure>(out var collisionFigure))
-                _effect.OnCollisionEnter(this, collisionFigure);
+                _effect.HandleCollision(this, collisionFigure);
         }
 
         public Sprite IconSprite { get => _icon.sprite; }
@@ -63,7 +63,7 @@ namespace Assets.Game.Scripts.Features.Figures
         {
             _effect = effect;
 
-            _effect.Start(this);
+            _effect.Init(this);
         }
 
         public void DeletePhysics()

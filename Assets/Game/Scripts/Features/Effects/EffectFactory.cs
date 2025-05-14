@@ -9,7 +9,7 @@ namespace Assets.Game.Scripts.Features.Effects
             return type switch
             {
                 EffectType.None => new EmptyEffect(),
-                EffectType.Frozen => new EmptyEffect(),
+                EffectType.Frozen => new FrozenEffect(),
                 EffectType.Sticky => new StickyEffect(),
                 EffectType.Heavy => new HeavyEffect(),
                 EffectType.Explosive => new EmptyEffect(),

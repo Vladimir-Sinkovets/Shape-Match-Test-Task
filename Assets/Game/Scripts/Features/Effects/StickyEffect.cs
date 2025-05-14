@@ -11,15 +11,15 @@ namespace Assets.Game.Scripts.Features.Effects
         private FixedJoint2D _joint;
         private Figure _figure;
 
-        public void Start(Figure figure) => _figure = figure;
+        public void Init(Figure figure) => _figure = figure;
 
-        public void OnCollisionEnter(Figure figure, Figure collider)
+        public void HandleCollision(Figure collider)
         {
             if (_connectedFigure != null)
                 return;
 
             if (_joint == null)
-                _joint = figure.AddComponent<FixedJoint2D>();
+                _joint = _figure.AddComponent<FixedJoint2D>();
 
             _joint.connectedBody = collider.Rigidbody;
 
