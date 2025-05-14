@@ -1,13 +1,6 @@
-﻿using Assets.Game.Scripts.Features.Figures;
-using System;
-
-namespace Assets.Game.Scripts.Features.Effects
+﻿namespace Assets.Game.Scripts.Features.Effects
 {
-    public class EmptyEffect : IFigureEffect
+    public class EmptyEffect : FigureEffect
     {
-        public void DeletePhysics() { }
-        public void HandleCollision(Figure collider) { }
-        public void Init(Figure figure) { }
-        public bool CanBePicked => true;
     }
 }

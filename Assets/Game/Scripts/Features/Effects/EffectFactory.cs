@@ -14,7 +14,7 @@ namespace Assets.Game.Scripts.Features.Effects
             _levelConfig = levelConfig;
         }
 
-        public IFigureEffect Get(EffectType type)
+        public FigureEffect Get(EffectType type)
         {
             return type switch
             {
@@ -22,7 +22,7 @@ namespace Assets.Game.Scripts.Features.Effects
                 EffectType.Frozen => new FrozenEffect(_figuresPool, _levelConfig.FrozenEffectConfig),
                 EffectType.Sticky => new StickyEffect(),
                 EffectType.Heavy => new HeavyEffect(),
-                EffectType.Explosive => new EmptyEffect(),
+                EffectType.Explosive => new ExplosiveEffect(),
                 _ => new EmptyEffect(),
             };
         }

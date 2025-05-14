@@ -1,12 +1,10 @@
 ﻿using Assets.Game.Scripts.Features.Figures;
 using Assets.Game.Scripts.Features.Spawner;
-using System;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.Game.Scripts.Features.Effects
 {
-    public class FrozenEffect : IFigureEffect
+    public class FrozenEffect : FigureEffect
     {
         private IFiguresPool _figuresPool;
         private readonly FrozenEffectConfig _effectConfig;
@@ -15,7 +13,7 @@ namespace Assets.Game.Scripts.Features.Effects
         private int _quantityForUnfreeze;
         private SpriteRenderer _ice;
 
-        public bool CanBePicked => !_isFrozen;
+        public override bool CanBePicked => !_isFrozen;
 
         public FrozenEffect(IFiguresPool figuresPool, FrozenEffectConfig effectConfig)
         {
@@ -24,8 +22,10 @@ namespace Assets.Game.Scripts.Features.Effects
             _isFrozen = true;
         }
 
-        public void Init(Figure figure)
+        public override void Init(Figure figure)
         {
+            base.Init(figure);
+
             _figuresPool.OnFigureDestroyed += OnFigureDestroyedHandler;
 
             _quantityForUnfreeze = _effectConfig.QuantityForUnfreeze;
@@ -33,14 +33,12 @@ namespace Assets.Game.Scripts.Features.Effects
             _ice = GameObject.Instantiate(_effectConfig.IceSprite, figure.transform);
         }
 
-        public void DeletePhysics() { }
-
-        public void HandleCollision(Figure collider) { }
-
         private void OnFigureDestroyedHandler()
         {
             if (!_isFrozen)
                 return;
+
+            _figuresPool.OnFigureDestroyed -= OnFigureDestroyedHandler;
 
             _quantityForUnfreeze--;
 

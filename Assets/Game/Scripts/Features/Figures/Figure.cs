@@ -18,7 +18,7 @@ namespace Assets.Game.Scripts.Features.Figures
 
         private FigureData _data = new();
 
-        private IFigureEffect _effect;
+        private FigureEffect _effect;
 
         public event Action<Figure> OnDestroyed;
 
@@ -34,6 +34,7 @@ namespace Assets.Game.Scripts.Features.Figures
         public Rigidbody2D Rigidbody { get => _rigidbody; }
 
         public FigureData Data { get => _data; }
+        public FigureEffect Effect { get => _effect; }
         public bool CanBePicked { get => _effect.CanBePicked; }
 
         public void SetShape(ShapeType shapeType, Sprite sprite)
@@ -60,7 +61,7 @@ namespace Assets.Game.Scripts.Features.Figures
             _data.ColorType = colorType;
         }
 
-        public void SetEffect(IFigureEffect effect)
+        public void SetEffect(FigureEffect effect)
         {
             _effect = effect;
 

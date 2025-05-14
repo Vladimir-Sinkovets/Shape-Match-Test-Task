@@ -21,7 +21,6 @@ namespace Assets.Game.Scripts.Features.Spawner
         public int NumberOfDuplicates { get => _numberOfDuplicates; }
         public FrozenEffectConfig FrozenEffectConfig { get => _frozenEffectConfig; }
     }
-
     [Serializable]
     public class FrozenEffectConfig
     {

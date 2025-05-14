@@ -4,6 +4,6 @@ namespace Assets.Game.Scripts.Features.Effects
 {
     public interface IEffectFactory
     {
-        IFigureEffect Get(EffectType type);
+        FigureEffect Get(EffectType type);
     }
 }
