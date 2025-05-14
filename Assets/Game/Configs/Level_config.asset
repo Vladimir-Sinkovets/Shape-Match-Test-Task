@@ -16,10 +16,13 @@ MonoBehaviour:
   _iconConfigs:
   - Sprite: {fileID: -713612176, guid: 40a8004e3b5b96a4096112bb9be2bed3, type: 3}
     Type: 0
+    Effect: 2
   - Sprite: {fileID: 894453820, guid: 40a8004e3b5b96a4096112bb9be2bed3, type: 3}
     Type: 1
+    Effect: 0
   - Sprite: {fileID: -249765723, guid: 40a8004e3b5b96a4096112bb9be2bed3, type: 3}
     Type: 2
+    Effect: 0
   _colorConfigs:
   - Color: {r: 1, g: 0, b: 0, a: 1}
     ColorType: 0

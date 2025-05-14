@@ -10,7 +10,7 @@ namespace Assets.Game.Scripts.Features.Effects
             {
                 EffectType.None => new EmptyEffect(),
                 EffectType.Frozen => new EmptyEffect(),
-                EffectType.Sticky => new EmptyEffect(),
+                EffectType.Sticky => new StickyEffect(),
                 EffectType.Heavy => new HeavyEffect(),
                 EffectType.Explosive => new EmptyEffect(),
                 _ => new EmptyEffect(),

@@ -22,6 +22,12 @@ namespace Assets.Game.Scripts.Features.Figures
 
         public event Action<Figure> OnDestroyed;
 
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.TryGetComponent<Figure>(out var collisionFigure))
+                _effect.OnCollisionEnter(this, collisionFigure);
+        }
+
         public Sprite IconSprite { get => _icon.sprite; }
         public Color Color { get => _coloredBackground.color; }
         public Sprite BackgroundSprite { get => _background.sprite; }
@@ -62,6 +68,8 @@ namespace Assets.Game.Scripts.Features.Figures
 
         public void DeletePhysics()
         {
+            _effect.DeletePhysics();
+
             Destroy(_polygonCollider);
             Destroy(_rigidbody);
         }
