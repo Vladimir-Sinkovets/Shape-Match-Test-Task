@@ -3268,12 +3268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4330,7 +4330,6 @@ MonoBehaviour:
   _levelConfig: {fileID: 11400000, guid: dadde2f4b5bed2f4796504946a731110, type: 2}
   _figuresSpawner: {fileID: 1541341472}
   _figuresPool: {fileID: 1131478089}
-  _camera: {fileID: 519420031}
   _collectionPanel: {fileID: 1848972538}
   _winPanel: {fileID: 1063941009}
   _losePanel: {fileID: 919040255}
@@ -4484,15 +4483,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 80
+    m_Left: 120
     m_Right: 0
-    m_Top: 20
+    m_Top: 45
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 60, y: 50}
-  m_Spacing: {x: 50, y: 0}
+  m_CellSize: {x: 1, y: 1}
+  m_Spacing: {x: 100, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &2050806920
