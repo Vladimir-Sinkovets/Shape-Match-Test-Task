@@ -2,7 +2,7 @@
 {
     public interface ICollectionPanelRemovable
     {
-        void Remove(int index);
+        void RemoveLast();
         int CurrentIndex { get; }
     }
 }

@@ -15,7 +15,6 @@ namespace Assets.Game.Scripts.Core.Level
         [SerializeField] private LevelConfig _levelConfig;
         [SerializeField] private FiguresSpawner _figuresSpawner;
         [SerializeField] private FiguresPool _figuresPool;
-        [SerializeField] private Camera _camera;
         [SerializeField] private CollectionPanel _collectionPanel;
         [SerializeField] private EndGamePanel _winPanel;
         [SerializeField] private EndGamePanel _losePanel;
@@ -34,8 +33,6 @@ namespace Assets.Game.Scripts.Core.Level
 
             Container.BindInterfacesTo<FigurePicker>()
                 .AsSingle();
-
-            Container.BindInstance(_camera);
 
             Container.Bind<ICollectionPanel>().FromInstance(_collectionPanel);
 

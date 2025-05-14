@@ -9,6 +9,7 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
 {
     public class CollectionPanel : MonoBehaviour, ICollectionPanel, ICollectionPanelRemovable
     {
+        private const int FigureCountForMatch = 3;
         [SerializeField] private RectTransform _panel;
         [SerializeField] private float _movingTime;
 
@@ -41,7 +42,7 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
             _effects = new FigureEffect[uiFigures.Count];
         }
 
-        public void Take(Figure figure) // to do: split method
+        public void Take(Figure figure)
         {
             if (_isBlocked || _currentIndex >= _uiFigures.Length)
                 return;
@@ -54,10 +55,10 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
 
             _currentIndex++;
 
-            var destination = Camera.main.ScreenToWorldPoint(uiFigure.transform.position); // to do: fix
+            var destination = Camera.main.ScreenToWorldPoint(uiFigure.transform.position);
             destination.z = figure.transform.position.z;
 
-            figure.DeletePhysics(); // to do: fix
+            figure.DeletePhysics();
 
             figure.transform.DOMove(destination, _movingTime)
                 .SetEase(Ease.OutCubic)
@@ -71,9 +72,9 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
 
                     if (HasMatch(out var index))
                     {
-                        RemoveFigure(index);
+                        RemoveLastFigures(FigureCountForMatch);
 
-                        _effects[index].HandlePanelMatch(index, this);
+                        ApplyEffects(index);
                     }
 
                     if (_currentIndex >= _uiFigures.Length)
@@ -85,18 +86,28 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
                 });
         }
 
-        private void RemoveFigure(int index)
+        public void RemoveLast()
         {
-            for (int i = index; i < index + 3; i++)
-            {
-                _data[i] = null;
-                _uiFigures[i].HideFigure();
+            _data[_currentIndex - 1] = null;
 
-                _currentIndex = index;
+            _uiFigures[_currentIndex - 1].HideFigure();
+
+            _currentIndex = _currentIndex - 1;
+        }
+
+        private void ApplyEffects(int index)
+        {
+            for (int i = index; i < index + FigureCountForMatch; i++)
+            {
+                _effects[i].HandlePanelMatch(this);
             }
         }
 
-        public void Remove(int index) => RemoveFigure(index);
+        private void RemoveLastFigures(int count)
+        {
+            for (int i = 0; i < count; i++)
+                RemoveLast();
+        }
         
         private bool HasMatch(out int index)
         {
@@ -126,9 +137,11 @@ namespace Assets.Game.Scripts.Features.CollectionPanels
                 shapeType = _data[i].ShapeType;
                 colorType = _data[i].ColorType;
 
-                if (sameIconsCount == 3 || sameShapesCount == 3 || sameColorsCount == 3) // to do: fix 3
+                if (sameIconsCount == FigureCountForMatch ||
+                    sameShapesCount == FigureCountForMatch ||
+                    sameColorsCount == FigureCountForMatch)
                 {
-                    index = i - 2;
+                    index = i - FigureCountForMatch + 1;
 
                     return true;
                 }

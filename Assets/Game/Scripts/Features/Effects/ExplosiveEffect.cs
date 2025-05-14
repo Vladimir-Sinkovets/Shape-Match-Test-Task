@@ -4,10 +4,10 @@ namespace Assets.Game.Scripts.Features.Effects
 {
     public class ExplosiveEffect : FigureEffect
     {
-        public override void HandlePanelMatch(int index, ICollectionPanelRemovable collectionPanel)
+        public override void HandlePanelMatch(ICollectionPanelRemovable collectionPanel)
         {
-            if (index > 0)
-                collectionPanel.Remove(index - 1);
+            if (collectionPanel.CurrentIndex > 0)
+                collectionPanel.RemoveLast();
         }
     }
 }
