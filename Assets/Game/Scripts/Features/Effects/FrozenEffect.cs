@@ -29,7 +29,7 @@ namespace Assets.Game.Scripts.Features.Effects
             _figuresPool.OnFigureDestroyed += OnFigureDestroyedHandler;
 
 
-            if (_effectConfig.QuantityForUnfreeze <= _figuresPool.DeletedFigures)
+            if (_effectConfig.QuantityForUnfreeze <= _figuresPool.DeletedFiguresCount)
                 Unfreeze();
             else
                 _ice = GameObject.Instantiate(_effectConfig.IceSprite, figure.transform);
@@ -47,7 +47,7 @@ namespace Assets.Game.Scripts.Features.Effects
             if (!_isFrozen)
                 return;
 
-            if (_effectConfig.QuantityForUnfreeze <= _figuresPool.DeletedFigures)
+            if (_effectConfig.QuantityForUnfreeze <= _figuresPool.DeletedFiguresCount)
                 Unfreeze();
         }
 
